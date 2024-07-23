@@ -1,0 +1,80 @@
+{
+    "MetaData": {
+      "Name": "ServiceProvider",
+      "enabled": "Y",
+      "semanticProtocol": "www.admin-shell.io/interaction/bidding",
+      "Author": "",
+      "Date": "2024-03-26",
+      "SkillService" : "Service Provision",
+      "initialState" : "WaitforcallForProposal"
+    },
+    "StateMachine": {
+      "InitialState": "WaitforcallForProposal",
+      "Transitions": [
+        {
+          "StartState": "WaitforcallForProposal",
+          "TargetState": "AcceptOrder",
+          "InputDocument": "callForProposal",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        },
+        {
+          "StartState": "WaitforcallForProposal",
+          "TargetState": "RejectOrder",
+          "InputDocument": "callForProposal",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        },
+        {
+          "StartState": "RejectOrder",
+          "TargetState": "WaitforcallForProposal",
+          "InputDocument": "NA",
+          "Condition": "-",
+          "OutputDocument": "OrderRefused"
+        },
+        {
+            "StartState": "AcceptOrder",
+            "TargetState": "SliceFile",
+            "InputDocument": "NA",
+            "Condition": "-",
+            "OutputDocument": "NA"
+        },
+        {
+          "StartState": "SliceFile",
+          "TargetState": "ExtractInformation",
+          "InputDocument": "NA",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        },
+        {
+          "StartState": "ExtractInformation",
+          "TargetState": "PriceCalculation",
+          "InputDocument": "NA",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        },
+        {
+          "StartState": "PriceCalculation",
+          "TargetState": "SendProposal",
+          "InputDocument": "NA",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        },
+        {
+          "StartState": "SendProposal",
+          "TargetState": "StartPrinting",
+          "InputDocument": "NA",
+          "Condition": "-",
+          "OutputDocument": "Proposal"
+        },
+        {
+          "StartState": "StartPrinting",
+          "TargetState": "WaitforcallForProposal",
+          "InputDocument": "NA",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        }
+      ]
+    }
+  }
+  

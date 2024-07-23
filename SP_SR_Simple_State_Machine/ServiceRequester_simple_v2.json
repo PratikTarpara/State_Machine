@@ -1,0 +1,67 @@
+{
+    "MetaData": {
+      "Name": "ServiceRequester",
+      "enabled": "Y",
+      "semanticProtocol": "www.admin-shell.io/interaction/bidding",
+      "Author": " ",
+      "Date": "2023-03-26",
+      "SkillService" : "Service Requisition",
+      "initialState" : "WaitforNewOrder"
+    },
+    "StateMachine": {
+      "InitialState": "WaitforNewOrder",
+      "Transitions": 
+      [
+        {
+          "StartState": "WaitforNewOrder",
+          "TargetState": "SendCFP",
+          "InputDocument": "Order",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        },
+        {
+          "StartState": "SendCFP",
+          "TargetState": "WaitForSPProposal",
+          "InputDocument": "NA",
+          "Condition": "-",
+          "OutputDocument": "callForProposal"
+        },
+        {
+          "StartState": "WaitForSPProposal",
+          "TargetState": "WaitforNewOrder",
+          "InputDocument": "OrderRefused",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        },
+        {
+          "StartState": "WaitForSPProposal",
+          "TargetState": "AcceptProposal",
+          "InputDocument": "Proposal",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        },
+        {
+          "StartState": "AcceptProposal",
+          "TargetState": "WaitforNewOrder",
+          "InputDocument": "NA",
+          "Condition": "-",
+          "OutputDocument": "Accept"
+        },
+        {
+          "StartState": "WaitForSPProposal",
+          "TargetState": "RejectProposal",
+          "InputDocument": "Proposal",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        },
+        {
+          "StartState": "RejectProposal",
+          "TargetState": "WaitforNewOrder",
+          "InputDocument": "NA",
+          "Condition": "-",
+          "OutputDocument": "Reject"
+        }
+      ]
+    }
+  }
+  

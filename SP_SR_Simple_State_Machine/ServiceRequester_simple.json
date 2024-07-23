@@ -1,0 +1,59 @@
+{
+  "MetaData": {
+    "Name": "ServiceRequester",
+    "enabled": "Y",
+    "semanticProtocol": "www.admin-shell.io/interaction/bidding",
+    "Author": "Harish Kumar Pakala",
+    "Date": "2023-03-24",
+	"SkillService" : "Service Requisition",
+	"initialState" : "WaitforNewOrder"
+  },
+  "StateMachine": {
+    "InitialState": "WaitforNewOrder",
+    "Transitions": 
+    [
+	  {
+        "StartState": "WaitforNewOrder",
+        "TargetState": "cfpConfiguration",
+        "InputDocument": "Order",
+        "Condition": "-",
+        "OutputDocument": "NA"
+      },
+    {
+        "StartState": "cfpConfiguration",
+        "TargetState": "SendCFP",
+        "InputDocument": "NA",
+        "Condition": "-",
+        "OutputDocument": "NA"
+      },
+    {
+        "StartState": "SendCFP",
+        "TargetState": "WaitForSPProposal",
+        "InputDocument": "NA",
+        "Condition": "-",
+        "OutputDocument": "callForProposal"
+      },
+    {
+        "StartState": "WaitForSPProposal",
+        "TargetState": "SendListofProposals",
+        "InputDocument": "proposal",
+        "Condition": "-",
+        "OutputDocument": "NA"
+      },	  
+      {
+        "StartState": "SendListofProposals",
+        "TargetState": "WaitforSelection",
+        "InputDocument": "listofproposals",
+        "Condition": "-",
+        "OutputDocument": "NA"
+      },
+	  {
+        "StartState": "WaitforSelection",
+        "TargetState": "sendConfirmation",
+        "InputDocument": "selectproposal",
+        "Condition": "-",
+        "OutputDocument": "NA"
+      }
+    ]
+  }
+}

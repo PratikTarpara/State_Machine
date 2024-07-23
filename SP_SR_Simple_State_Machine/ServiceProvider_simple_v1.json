@@ -1,0 +1,80 @@
+{
+    "MetaData": {
+      "Name": "ServiceProvider",
+      "enabled": "Y",
+      "semanticProtocol": "www.admin-shell.io/interaction/bidding",
+      "Author": "",
+      "Date": "2024-03-26",
+      "SkillService" : "Service Provision",
+      "initialState" : "WaitforcallForProposal"
+    },
+    "StateMachine": {
+      "InitialState": "WaitforcallForProposal",
+      "Transitions": [
+        {
+          "StartState": "WaitforcallForProposal",
+          "TargetState": "acceptProposal",
+          "InputDocument": "callForProposal",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        },
+        {
+            "StartState": "acceptProposal",
+            "TargetState": "SliceFile",
+            "InputDocument": "NA",
+            "Condition": "-",
+            "OutputDocument": "Accept"
+        },
+        {
+          "StartState": "SliceFile",
+          "TargetState": "LayerHeight",
+          "InputDocument": "NA",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        },
+        {
+          "StartState": "LayerHeight",
+          "TargetState": "PossibleLayerHeight",
+          "InputDocument": "NA",
+          "Condition": "-",
+          "OutputDocument": "LayerAccept"
+        },
+        {
+          "StartState": "LayerHeight",
+          "TargetState": "NotPossibleLayerHeight",
+          "InputDocument": "NA",
+          "Condition": "-",
+          "OutputDocument": "LayerReject"
+        },
+        {
+          "StartState": "PossibleLayerHeight",
+          "TargetState": "WaitforcallForProposal",
+          "InputDocument": "NA",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        },
+        {
+          "StartState": "NotPossibleLayerHeight",
+          "TargetState": "WaitforcallForProposal",
+          "InputDocument": "NA",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        },
+        {
+          "StartState": "WaitforcallForProposal",
+          "TargetState": "refuseProposal",
+          "InputDocument": "callForProposal",
+          "Condition": "-",
+          "OutputDocument": "NA"
+        },
+        {
+            "StartState": "refuseProposal",
+            "TargetState": "WaitforcallForProposal",
+            "InputDocument": "",
+            "Condition": "-",
+            "OutputDocument": "Refuse"
+        }
+      ]
+    }
+  }
+  
